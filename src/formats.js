@@ -45,6 +45,12 @@ let formats = {
   agendaDateFormat: 'ddd MMM dd',
   agendaTimeFormat: 'hh:mm tt',
   agendaTimeRangeFormat: timeRangeFormat,
+
+  listHeaderFormat: dateRangeFormat,
+
+  listDateFormat: 'ddd MMM dd',
+  listTimeFormat: 'hh:mm tt',
+  listTimeRangeFormat: timeRangeFormat,
 }
 
 export function set(_formats) {

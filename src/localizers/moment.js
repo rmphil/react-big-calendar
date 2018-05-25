@@ -39,6 +39,12 @@ export let formats = {
   agendaDateFormat: 'ddd MMM DD',
   agendaTimeFormat: 'LT',
   agendaTimeRangeFormat: timeRangeFormat,
+
+  listHeaderFormat: dateRangeFormat,
+
+  listDateFormat: 'ddd MMM DD',
+  listTimeFormat: 'LT',
+  listTimeRangeFormat: timeRangeFormat,
 }
 
 export default function(moment) {

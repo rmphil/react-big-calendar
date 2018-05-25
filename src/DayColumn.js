@@ -228,35 +228,39 @@ class DayColumn extends React.Component {
       return (
         <EventWrapper {...wrapperProps} key={'evt_' + idx}>
           <div
+            className="rbc-event-container"
             style={{
               ...xStyle,
               top: `${top}%`,
-              height: `${height}%`,
               [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
+              height: `${height}%`,
               width: `${width}%`,
             }}
-            title={
-              tooltip
-                ? (typeof label === 'string' ? label + ': ' : '') + tooltip
-                : undefined
-            }
-            onClick={e => this._select(event, e)}
-            onDoubleClick={e => this._doubleClick(event, e)}
-            className={cn('rbc-event', className, {
-              'rbc-selected': _isSelected,
-              'rbc-event-continues-earlier': continuesPrior,
-              'rbc-event-continues-later': continuesAfter,
-              'rbc-event-continues-day-prior': _continuesPrior,
-              'rbc-event-continues-day-after': _continuesAfter,
-            })}
           >
-            <div className="rbc-event-label">{label}</div>
-            <div className="rbc-event-content">
-              {EventComponent ? (
-                <EventComponent event={event} title={title} />
-              ) : (
-                title
-              )}
+            <div
+              title={
+                tooltip
+                  ? (typeof label === 'string' ? label + ': ' : '') + tooltip
+                  : undefined
+              }
+              onClick={e => this._select(event, e)}
+              onDoubleClick={e => this._doubleClick(event, e)}
+              className={cn('rbc-event', className, {
+                'rbc-selected': _isSelected,
+                'rbc-event-continues-earlier': continuesPrior,
+                'rbc-event-continues-later': continuesAfter,
+                'rbc-event-continues-day-prior': _continuesPrior,
+                'rbc-event-continues-day-after': _continuesAfter,
+              })}
+            >
+              <div className="rbc-event-label">{label}</div>
+              <div className="rbc-event-content">
+                {EventComponent ? (
+                  <EventComponent event={event} title={title} />
+                ) : (
+                  title
+                )}
+              </div>
             </div>
           </div>
         </EventWrapper>

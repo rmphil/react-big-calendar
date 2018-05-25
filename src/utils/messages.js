@@ -15,6 +15,7 @@ let defaultMessages = {
   tomorrow: 'tomorrow',
   today: 'today',
   agenda: 'agenda',
+  list: 'list',
 
   showMore: total => `+${total} more`,
 }
