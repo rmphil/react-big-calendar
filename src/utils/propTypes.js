@@ -26,6 +26,7 @@ export let eventComponent = PropTypes.oneOfType([
     week: elementType,
     day: elementType,
     agenda: elementType,
+    list: elementType,
   }),
 ])
 
@@ -43,7 +44,7 @@ export let dateRangeFormat = PropTypes.func
  * accepts either an array of builtin view names:
  *
  * ```
- * views={['month', 'day', 'agenda']}
+ * views={['month', 'day', 'agenda', 'list']}
  * ```
  *
  * or an object hash of the view name and the component (or boolean for builtin)

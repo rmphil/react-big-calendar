@@ -85,7 +85,7 @@ class Calendar extends React.Component {
 
     /**
      * The initial view set for the Calendar.
-     * @type Calendar.Views ('month'|'week'|'work_week'|'day'|'agenda')
+     * @type Calendar.Views ('month'|'week'|'work_week'|'day'|'agenda'|'list')
      * @default 'month'
      */
     defaultView: PropTypes.string,
@@ -331,7 +331,7 @@ class Calendar extends React.Component {
      * accepts either an array of builtin view names,
      *
      * ```jsx
-     * views={['month', 'day', 'agenda']}
+     * views={['month', 'day', 'agenda', 'list']}
      * ```
      * or an object hash of the view name and the component (or boolean for builtin).
      *
@@ -353,9 +353,9 @@ class Calendar extends React.Component {
      * }
      * ```
      *
-     * @type Calendar.Views ('month'|'week'|'work_week'|'day'|'agenda')
+     * @type Calendar.Views ('month'|'week'|'work_week'|'day'|'agenda'|'list')
      * @View
-     ['month', 'week', 'day', 'agenda']
+     ['month', 'week', 'day', 'agenda', 'list']
      */
     views: componentViews,
 
@@ -395,7 +395,7 @@ class Calendar extends React.Component {
     getDrilldownView: PropTypes.func,
 
     /**
-     * Determines the end date from date prop in the agenda view
+     * Determines the end date from date prop in the agenda and list view
      * date prop + length (in number of days) = end date
      */
     length: PropTypes.number,
@@ -596,9 +596,10 @@ class Calendar extends React.Component {
       dayHeaderFormat: dateFormat,
 
       /**
-       * Toolbar header format for the Agenda view, e.g. "4/1/2015 — 5/1/2015"
+       * Toolbar header format for the Agenda and List view, e.g. "4/1/2015 — 5/1/2015"
        */
       agendaHeaderFormat: dateRangeFormat,
+      listHeaderFormat: dateRangeFormat,
 
       /**
        * A time range format for selecting time slots, e.g "8:00am — 2:00pm"
@@ -608,6 +609,10 @@ class Calendar extends React.Component {
       agendaDateFormat: dateFormat,
       agendaTimeFormat: dateFormat,
       agendaTimeRangeFormat: dateRangeFormat,
+
+      listDateFormat: dateFormat,
+      listTimeFormat: dateFormat,
+      listTimeRangeFormat: dateRangeFormat,
 
       /**
        * Time range displayed on events.
@@ -646,15 +651,12 @@ class Calendar extends React.Component {
       eventWrapper: elementType,
       dayWrapper: elementType,
       dateCellWrapper: elementType,
-
       toolbar: elementType,
-
       agenda: PropTypes.shape({
         date: elementType,
         time: elementType,
         event: elementType,
       }),
-
       day: PropTypes.shape({
         header: elementType,
         event: elementType,
@@ -666,6 +668,10 @@ class Calendar extends React.Component {
       month: PropTypes.shape({
         header: elementType,
         dateHeader: elementType,
+        event: elementType,
+      }),
+      list: PropTypes.shape({
+        date: elementType,
         event: elementType,
       }),
     }),
@@ -682,6 +688,7 @@ class Calendar extends React.Component {
       week: PropTypes.node,
       day: PropTypes.node,
       agenda: PropTypes.node,
+      list: PropTypes.node,
       date: PropTypes.node,
       time: PropTypes.node,
       event: PropTypes.node,
@@ -694,7 +701,7 @@ class Calendar extends React.Component {
     popup: false,
     toolbar: true,
     view: views.MONTH,
-    views: [views.MONTH, views.WEEK, views.DAY, views.AGENDA],
+    views: [views.MONTH, views.WEEK, views.DAY, views.AGENDA, views.LIST],
     step: 30,
     length: 30,
 
