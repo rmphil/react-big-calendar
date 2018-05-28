@@ -94,6 +94,7 @@ class List extends React.Component {
         <EventComponent
           key={dayKey + '_' + idx}
           event={event}
+          time={this.timeRangeLabel(day, event)}
           title={title}
           onClick={e => this._select(event, e)}
           onDoubleClick={e => this._doubleClick(event, e)}
