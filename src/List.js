@@ -50,9 +50,7 @@ class List extends React.Component {
     return (
       <div className="rbc-list-view">
         <div className="rbc-list-content">
-          <div className="rbc-list-events">
-            {range.map((day, idx) => this.renderDay(day, events, idx))}
-          </div>
+          {range.map((day, idx) => this.renderDay(day, events, idx))}
         </div>
       </div>
     )
