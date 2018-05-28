@@ -3,6 +3,7 @@ import React from 'react'
 import localizer from './localizer'
 import message from './utils/messages'
 import dates from './utils/dates'
+import { notify } from './utils/helpers'
 import { navigate } from './utils/constants'
 import { accessor as get } from './utils/accessors'
 import { accessor, dateFormat, dateRangeFormat } from './utils/propTypes'
@@ -26,6 +27,8 @@ class List extends React.Component {
     listTimeRangeFormat: dateRangeFormat,
     culture: PropTypes.string,
     components: PropTypes.object.isRequired,
+    onSelectEvent: PropTypes.func.isRequired,
+    onDoubleClickEvent: PropTypes.func.isRequired,
     messages: PropTypes.shape({
       date: PropTypes.string,
       time: PropTypes.string,
@@ -90,12 +93,20 @@ class List extends React.Component {
         : {}
 
       return EventComponent ? (
-        <EventComponent key={dayKey + '_' + idx} event={event} title={title} />
+        <EventComponent
+          key={dayKey + '_' + idx}
+          event={event}
+          title={title}
+          onClick={e => this._select(event, e)}
+          onDoubleClick={e => this._doubleClick(event, e)}
+        />
       ) : (
         <div
           key={dayKey + '_' + idx}
           className={'rbc-event ' + (className ? className : '')}
           style={style}
+          onClick={e => this._select(event, e)}
+          onDoubleClick={e => this._doubleClick(event, e)}
         >
           <div className="rbc-event-label">
             {this.timeRangeLabel(day, event)}
@@ -158,6 +169,14 @@ class List extends React.Component {
         )}
       </span>
     )
+  }
+
+  _select = (...args) => {
+    notify(this.props.onSelectEvent, args)
+  }
+
+  _doubleClick = (...args) => {
+    notify(this.props.onDoubleClickEvent, args)
   }
 }
 
